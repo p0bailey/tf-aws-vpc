@@ -1,7 +1,7 @@
-# Makefile to add, commit, push changes to Git, and open the repository on GitHub
+# Makefile to add, commit, push changes to Git, and manage GitHub operations including opening a pull request in the browser
 
 # Default target
-all: push open-repo
+all: push create-pr
 
 # Stage all changes
 add:
@@ -15,8 +15,8 @@ commit: add
 push: commit
 	git push origin $(shell git rev-parse --abbrev-ref HEAD)
 
-# Open the repository in the browser using GitHub CLI
-open-repo:
-	gh repo view --web
+# Create and open a pull request in the browser
+create-pr: push
+	gh pr create --title "Update on $(shell date +%Y-%m-%d)" --body "Automated changes by Makefile." --web
 
-.PHONY: all add commit push open-repo
+.PHONY: all add commit push create-pr
