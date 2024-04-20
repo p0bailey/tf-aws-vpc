@@ -21,6 +21,5 @@ To use these modules, include them in your Terraform configurations like this:
 ```hcl
 module "vpc" {
     source   = "github.com/p0bailey/tf-aws-vpc/modules/pub-priv"
-  
 }
 ```
