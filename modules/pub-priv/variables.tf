@@ -22,3 +22,9 @@ variable "nat_gateway_count" {
   type        = number
   default     = 1
 }
+
+variable "create_vpc_endpoints" {
+  description = "A boolean flag to control whether VPC endpoints and related security group should be created."
+  type        = bool
+  default     = true
+}
