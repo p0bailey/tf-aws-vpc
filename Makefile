@@ -21,11 +21,11 @@ add:
 	git add .
 
 # Commit with current date and time
-commit: add
+commit: 
 	git commit -m "Commit on $(DATE_FORMAT)"
 
 # Push to current branch
-push: commit
+push: 
 	git push origin $(shell git rev-parse --abbrev-ref HEAD)
 
 # Open the repository in the browser using GitHub CLI
