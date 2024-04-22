@@ -105,3 +105,16 @@ resource "aws_vpc_endpoint" "kms" {
     Name = var.vpc_name
   }
 }
+
+# VPC Endpoint for AWS DynamoDB
+resource "aws_vpc_endpoint" "dynamodb" {
+  count             = var.create_vpc_endpoints ? 1 : 0
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.${data.aws_region.current.name}.dynamodb"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids   = aws_route_table.private.*.id # Assuming you have a route table for your private subnets
+
+  tags = {
+    Name = "${var.vpc_name}-dynamodb"
+  }
+}
