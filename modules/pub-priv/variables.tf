@@ -5,6 +5,13 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "profile" {
+  description = "The AWS profile to use for deployment."
+  type        = string
+  default     = "default" // Default profile if not specified
+}
+
+
 variable "vpc_name" {
   description = "The name of the VPC."
   type        = string
