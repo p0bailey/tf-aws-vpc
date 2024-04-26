@@ -14,7 +14,7 @@ variable "vpc_name" {
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC."
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "10.0.0.0/8"
 }
 
 variable "nat_gateway_count" {
