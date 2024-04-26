@@ -18,11 +18,13 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
+
 resource "aws_subnet" "public" {
   count = var.subnet_count
 
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = cidrsubnet(aws_vpc.main.cidr_block, var.subnet_newbits, count.index)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, var.subnet_newbits, count.index)
+  #tfsec:ignore:avd-aws-0164
   map_public_ip_on_launch = true
   availability_zone       = element(data.aws_availability_zones.available.names, count.index)
 

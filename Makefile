@@ -6,6 +6,7 @@ DATE_FORMAT := $(shell date "+%Y-%m-%d %H:%M")
 # Help target to show all available actions
 help:
 	@echo "Available actions:"
+	@echo "  make test       - Run Trivy Sec"
 	@echo "  make add        - Stage all changes"
 	@echo "  make commit     - Commit staged changes with current date and time"
 	@echo "  make push       - Push commits to the current branch"
@@ -15,6 +16,10 @@ help:
 
 # Default target
 .DEFAULT_GOAL := help
+
+# Test
+test:
+	trivy config .
 
 # Stage all changes
 add:
@@ -37,6 +42,6 @@ create-pr:
 	gh pr create --title "Update on $(DATE_FORMAT)" --body "Automated changes by Makefile." --web
 
 # Run all actions
-all: push open-repo create-pr
+all: add commit push
 
 .PHONY: help add commit push open-repo create-pr all
