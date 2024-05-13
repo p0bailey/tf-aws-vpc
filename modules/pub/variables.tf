@@ -5,6 +5,13 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "profile" {
+  description = "The AWS profile used"
+  type        = string
+  default     = "null"
+}
+
+
 variable "vpc_name" {
   description = "The vpc name"
   type        = string
